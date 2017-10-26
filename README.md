@@ -61,8 +61,9 @@ The following tables list all of the possible Sentinel API end points and relate
 
 ### Full Access
 
-| GET    | /users                            | Returns all users                                             |
+| Method | Route                             | Info                                                          |
 |--------|-----------------------------------|---------------------------------------------------------------|
+| GET    | /users                            | Returns all users                                             |
 | GET    | /users/{id}                       | Returns a specific user                                       |
 | POST   | /users                            | Creates a new user                                            |
 | PUT    | /users/{id}                       | Edits a user                                                  |
@@ -223,7 +224,7 @@ Authentication is required and has not been supplied or failed.
 The request was valid but you do not have the correct permissions
 
 **404 NOT FOUND**
-The requested record does not exist
+The requested endpoint or record does not exist
 
 **405 METHOD NOT ALLOWED**
 The request method is not allowed for the endpoint. 
@@ -251,7 +252,9 @@ There was an unexpected internal error
 
 When making calls to the API the routes are preceded by the client domain and /api/v2. e.g 
 
-``` https://sentinel.comms.zone/api/v2/ ```
+``` https://yourdomain.comms.zone/api/v2/ ```
+
+Some headers in the example responses have been omitted for brevity.
 
 ### Obtaining an api token
 
@@ -600,13 +603,13 @@ date: Wed, 25 Oct 2017 22:51:17 GMT
 Creating a contact is similar to creating a user.
 
 ```
-POST /api/v2/contacts
-accept: application/json
-authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
-content-type: application/x-www-form-urlencoded
-host: sentinel.comms.zone
+POST /api/v2/contacts HTTP/1.1
+Host: sentinel.comms.zone
+Accept: application/json
+Authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+Content-Type: application/x-www-form-urlencoded
 
-name=Peter&surname=Smith&email=peter.smith@yudu.com&mobile_code=44&mobile=284938493999
+name=Albert&surname=Roux&mobile_code=44&mobile=38957438573&email=a.roux%40yudu.com
 ```
 
 Which returns the following:
@@ -622,24 +625,23 @@ date: Wed, 25 Oct 2017 22:57:25 GMT
         "message": "Record Created.",
         "status_code": 201,
         "data": {
-            "id": 13,
-            "name": "Peter",
-            "surname": "Smith",
-            "mobile": "+44284938493999",
+            "id": 14,
+            "name": "Albert",
+            "surname": "Roux",
+            "mobile": "+4438957438573",
             "landline": null,
-            "email": "peter.smith@yudu.com",
+            "email": "a.roux@yudu.com",
             "position": null,
             "company": null,
             "location": null,
-            "active": false,
-            "visible_in_directory": false,
+            "active": true,
+            "visible_in_directory": true,
             "avatar": "",
-            "created": "2017-10-25T22:57:25+00:00",
-            "updated": "2017-10-25T22:57:25+00:00"
+            "created": "2017-10-26T09:16:54+00:00",
+            "updated": "2017-10-26T09:16:54+00:00"
         }
     }
 }
-
 ```
 
 ### Creating a group
@@ -652,6 +654,8 @@ accept: application/json
 authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
 content-type: application/x-www-form-urlencoded
 host: sentinel.comms.zone
+
+name=Group+1&broadcast=1&document=1
 ```
 
 The successful response will look as follows.
@@ -667,12 +671,12 @@ date: Wed, 25 Oct 2017 23:04:35 GMT
         "message": "Record Created.",
         "status_code": 201,
         "data": {
-            "id": 5,
+            "id": 6,
             "name": "Group 1",
             "broadcast": true,
             "document": true,
-            "created": "2017-10-25T23:04:35+00:00",
-            "updated": "2017-10-25T23:04:35+00:00"
+            "created": "2017-10-26T08:51:58+00:00",
+            "updated": "2017-10-26T08:51:58+00:00"
         }
     }
 }
@@ -680,12 +684,428 @@ date: Wed, 25 Oct 2017 23:04:35 GMT
 
 ### Assigning a user to a group
 
+Once there are users and groups availble. Using the user and group IDs it is simple to assign users to groups.
+
+POSTING to the following endpoint replacing the parameters in curly braces with the group and user IDs.
+
+``` https://sentinel.comms.zone/groups/{id}/users/{user} ```
+
+
+The following request can be made to assign User with ID 19 to group with ID  6.
+
+```
+POST /api/v2/groups/6/users/19
+accept: application/json
+authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+content-type: application/x-www-form-urlencoded
+host: sentinel.comms.zone
+```
+
+The response will return a 204 with no content if the user is successfully assigned to the group.
+
+```
+HTTP/1.1 204
+status: 204
+date: Thu, 26 Oct 2017 09:00:03 GMT
+```
+
+### Getting a groups users
+
+To look up a specific group and see what users are assigned to it, make the following request:
+
+```
+GET /api/v2/groups/6/users HTTP/1.1
+Host: sentinel.comms.zone
+Accept: application/json
+Authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+```
+
+A response like this will be returned. It can be seen that the user that was assigned is indeed now a member of the group.
+
+```
+HTTP/1.1 200
+status: 200
+content-type: application/json
+date: Thu, 26 Oct 2017 09:03:52 GMT
+
+{
+    "data": {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 19,
+                "name": "Peter",
+                "surname": "Smith",
+                "email": "peter.smith@yudu.com",
+                "avatar": "",
+                "position": "",
+                "department": "",
+                "company": "",
+                "country": "",
+                "location": "",
+                "office": "",
+                "reports_to": "",
+                "work_mobile": null,
+                "work_landline": null,
+                "personal_mobile": null,
+                "personal_landline": null,
+                "emergency_contact_name": "",
+                "emergency_contact_number": null,
+                "emergency_contact_relationship": "",
+                "active": true,
+                "verified": false,
+                "visible_in_directory": true,
+                "can_see_private_fields": false,
+                "has_full_api_access": false,
+                "has_backend_access": false,
+                "created": "2017-10-25T22:51:17+00:00",
+                "updated": "2017-10-25T22:51:17+00:00"
+            }
+        ],
+        "from": 1,
+        "last_page": 1,
+        "next_page_url": null,
+        "path": "https://staging.comms.zone/api/v2/groups/6/users",
+        "per_page": 15,
+        "prev_page_url": null,
+        "to": 1,
+        "total": 1
+    }
+}
+
+```
+
+
 ### Assigning a contact to a group
+
+Assigning a contact to a group is similar to assigning a user. So POSTing to the following endpoint replacing the parameters in curly braces with the group and contact IDs.
+
+``` 
+https://sentinel.comms.zone/groups/{id}/contacts/{contact}
+```
+
+```
+POST /api/v2/groups/6/contacts/14 HTTP/1.1
+Host: sentinel.comms.zone
+Accept: application/json
+Authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+Content-Type: application/x-www-form-urlencoded
+```
+
+The response will return a 204 with no content if the contact is successfully assigned to the group.
+
+```
+HTTP/1.1 204
+status: 204
+date: Thu, 26 Oct 2017 09:51:50 GMT
+```
+
+### Requesting a list of documents
+
+Documents are automatically syncronized between YUDU publisher and Sentinel. So any documents that are published will appear listed in Sentinel automatically. At any time to see which documents are available then make the following request.
+
+```
+GET /api/v2/documents HTTP/1.1
+Host: sentinel.comms.zone
+Accept: application/json
+Authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+Content-Type: application/x-www-form-urlencoded
+```
+
+Providing there are YUDU publisher documents available in YUDU publisher a response like below will be returned.
+
+```
+HTTP/1.1 200
+status: 200
+content-type: application/json
+date: Thu, 26 Oct 2017 10:04:56 GMT
+
+{
+    "data": {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 1,
+                "node": 485930,
+                "name": "First Aid - heart Attack",
+                "thumbnail": "https://publisher.yudu.com/Yudu/public/thumbnail.jpg?pageId=4938493479384"
+            },
+            {
+                "id": 2,
+                "node": 934892,
+                "name": "Generic Emergency Evacuation Plan",
+                "thumbnail": "https://publisher.yudu.com/Yudu/public/thumbnail.jpg?pageId=534095759894"
+            },
+            {
+                "id": 3,
+                "node": 947399,
+                "name": "Fire Drill",
+                "thumbnail": "https://publisher.yudu.com/Yudu/public/thumbnail.jpg?pageId=2937129846234"
+            }
+        ],
+        "from": 1,
+        "last_page": 1,
+        "next_page_url": null,
+        "path": "https://sentinel.comms.zone/api/v2/documents",
+        "per_page": 15,
+        "prev_page_url": null,
+        "to": 3,
+        "total": 3
+    }
+}
+```
+
+If you need help adding documents to YUDU publisher please contact [support@yudu.com](support@yudu.com)
+
+### Assigning a document to a user
+
+Using the document information from the previous step it is possible to assign specific documents to users. Once assigned these documents will be visble to the user when they log into the Sentinel App. 
+
+Make a request like the following to assign a document to a user. This will assign Document ID 1 (First Aid - heart attack) to User ID 19 (Peter Smith)
+
+```
+POST /api/v2/users/19/documents/1
+accept: application/json
+authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+host: sentinel.comms.zone
+```
+
+Once assigned successfully a 204 response will be returned.
+
+```
+HTTP/1.1 204
+status: 204
+date: Thu, 26 Oct 2017 10:24:44 GMT
+```
+
+### Getting a users' documents 
+
+To check which documents are already assigned to a user make the following request. 
+
+```
+GET /api/v2/users/19/documents HTTP/1.1
+Host: staging.comms.zone
+Accept: application/json
+Authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+Content-Type: application/x-www-form-urlencoded
+Cache-Control: no-cache
+Postman-Token: 605c9eb3-ecb8-a8f6-e00f-478e4660ee25
+```
+
+The response will show which documents have been assigned. In this example it can be seen that the First Aid - heart Attack document is assigned to User ID 19 (Peter Smith).
+
+
+```
+HTTP/1.1 200
+status: 200
+content-type: application/json
+date: Thu, 26 Oct 2017 10:26:44 GMT
+```
 
 ### Creating a broadcast
 
+Once groups, users and contacts have been setup it is possible to create broadcasts in preparation for sending. 
+
+It is important to specify at least one send method for the broadcast from the available inapp, sms and email methods. Also an array of group ID's must be specified. The recipients of any broadcast is made up from any groups users and contacts.
+
+In this example broadcast, a fire alert will be broadacst by all 3 broadcast methods. The broadcast will require a response from all recipients. The broadcast will be sent to all members of a group with the ID of 6.
+
+```
+POST /api/v2/broadcasts HTTP/1.1
+Host: sentinel.comms.zone
+Accept: application/json
+Authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+Content-Type: application/x-www-form-urlencoded
+
+title=Fire+Alert&message=A+fire+has+broken+out+in+the+kitchens+of+Building+A.+Please+exit+all+company+buildings+and+meet+at+your+designated+fire+assembly+point.+&sms=1&sms_message=A+fire+has+broken+out%2C+please+exit+all+buildings+safely.&inapp=1&email=1&groups%5B%5D=6&response_required=1&question=Are+you+at+the+fire+assembly+point%3F
+```
+
+Once recieved the broadcast will be created and the following response will be given. Please note that the broadcast has only been created in the system. It has not been sent yet. 
+
+```
+HTTP/1.1 201
+status: 201
+content-type: application/json
+date: Thu, 26 Oct 2017 10:55:41 GMT
+
+{
+    "success": {
+        "message": "Record Created.",
+        "status_code": 201,
+        "data": {
+            "id": 28,
+            "title": "Fire Alert",
+            "sms": true,
+            "email": true,
+            "inapp": true,
+            "message": "A fire has broken out in the kitchens of Building A. Please exit all company buildings and meet at your designated fire assembly point.",
+            "sms_message": "A fire has broken out, please exit all buildings safely.",
+            "response_required": true,
+            "question": "Are you at the fire assembly point?",
+            "sent": false,
+            "archived": false,
+            "created": "2017-10-26T10:55:40+00:00",
+            "updated": "2017-10-26T10:55:40+00:00"
+        }
+    }
+}
+```
+
+
 ### Sending a broadcast
- 
+
+When the time comes to send a particular broadcast this can be done by simply using the Broadcast ID of the broadcast. Make the following request to send broadcast ID 28 which was created in the previous step.
+
+```
+POST /api/v2/broadcasts/28/send HTTP/1.1
+Host: sentinel.comms.zone
+Accept: application/json
+Authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+```
+
+If the broadcast has not been sent already then a 204 response will be given. The broadcasts will be queued to be sent out via the specified methods. 
+
+```
+HTTP/1.1 204
+status: 204
+date: Thu, 26 Oct 2017 11:01:28 GMT
+```
+
+If you wish to resend a broadcast the same request cannot be made again. A new broadcast would need to be created. 
+
+If the request is made again for the same broadcast the following response will be given. 
+
+```
+POST /api/v2/broadcasts/28/send HTTP/1.1
+Host: sentinel.comms.zone
+Accept: application/json
+Authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+
+{
+    "error": {
+        "message": "This broadcast has already been sent",
+        "status_code": 400
+    }
+}
+```
+
+### Checking recipients and broadcast status
+
+Once a broadacast has been sent the status of each recipient can be checked. This is useful to find out if a broadcast has been sent successfully through a broadcast channel for example if a SMS message has been sent. Also responses to any questions can be checked. 
+
+To check the recipients for the the above broadcast ID 28. The following request is made.
+
+```
+GET /api/v2/broadcasts/28/recipients HTTP/1.1
+Host: sentinel.comms.zone
+Accept: application/json
+Authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+```
+
+This will return a list of all recipient data for the broadcast.
+
+```
+HTTP/1.1 200
+status: 200
+content-type: application/json
+date: Thu, 26 Oct 2017 11:11:35 GMT
+
+
+{
+    "data": {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 345,
+                "broadcast_id": 28,
+                "type": "User",
+                "name": "Peter",
+                "surname": "Smith",
+                "email": "peter.smith@yudu.com",
+                "mobile": "",
+                "sms_status": "Not Sent",
+                "email_status": "Failed",
+                "inapp_status": "Sent",
+                "response_status": 0,
+                "response": null,
+                "token": "59f1c0635f783"
+            },
+            {
+                "id": 346,
+                "broadcast_id": 28,
+                "type": "Contact",
+                "name": "Albert",
+                "surname": "Roux",
+                "email": "a.roux@yudu.com",
+                "mobile": "4438957438573",
+                "sms_status": "Failed",
+                "email_status": "Failed",
+                "inapp_status": "Sent",
+                "response_status": 0,
+                "response": null,
+                "token": "59f1c0636859e"
+            }
+        ],
+        "from": 1,
+        "last_page": 1,
+        "next_page_url": null,
+        "path": "https://staging.comms.zone/api/v2/broadcasts/28/recipients",
+        "per_page": 15,
+        "prev_page_url": null,
+        "to": 2,
+        "total": 2
+    }
+}
+```
+
+
+### Sending a verification email
+
+It is possible to send a verification email out to a user. Once recieved the user will be able to  follow a link which will allow them to update their user profile by themselves. This is a good way to periodically ensure all user data is up to date. Also it allows the user to remove any data they do not wish to be held about them. Once sent, the email verification link will be available for 24hours.
+
+To send a verification email create the following request.
+
+```
+POST /api/v2/verification/19 HTTP/1.1
+Host: sentinel.comms.zone
+Accept: application/json
+Authorization: Bearer oxJflpOXP2KGKkQ9t79GLS1T3AP3OFn7R3kXuWpiE9SaPRKc5zjUIZOmTi0B
+```
+
+If successful a 204 response will be returned. The user will receive an email in their inbox shortly after.
+
+```
+HTTP/1.1 204
+status: 204
+date: Thu, 26 Oct 2017 11:27:54 GMT
+```
+
+
+## Rate Limiting
+
+Requests to the Sentinel API are limited currently to 60 requests per minute. When making requests to the API all responses will include rate limit headers. These headers can indicate how many requests are remaining for a given minute. They will look like below.
+
+```
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 59
+``` 
+
+If too many requests are made within a minute a 429 Too many requests error will be returned. The retry-after header will indicate how many seconds must be waited until a request will be accepted again. The x-ratelimit-reset header provides a Unix UTC timestamp, which is the exact time that a new rate limit kicks in.
+
+```
+HTTP/1.1 429
+status: 429
+date: Thu, 26 Oct 2017 11:52:44 GMT
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 0
+retry-after: 60
+x-ratelimit-reset: 1509018824
+```
+
+
+## Dates
+
+All dates returned in any responses are given in ISO 8601 format.
 
 
 ## Support
