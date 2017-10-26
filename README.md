@@ -6,6 +6,41 @@ YUDU Sentinel API Documentation - Version 2.0
 
 ## Contents
 
+- [Introduction](#introduction)
+- [Terminology](#Terminology)
+- [List of endpoints](#List of Endpoints)
+	- [Unprotected](#Unprotected)
+	- [App](#App)
+	- [Full Access](#Full Access) 	
+- [Request Headers](#Request Headers)
+- [Permissable Fields](#Permissable Fields)
+	- [Users](#Users)
+	- [Contacts](#Contacts)
+	- [Groups](#Groups) 	
+	- [Broadcasts](#Broadcasts) 	
+- [HTTP Responses and Errors](#HTTP Responses and Errors)
+- [Examples](#Examples)
+	- [Obtaining an api token](#Obtaining an api token)
+	- [Requesting the App directory](#Requesting the App directory)
+	- [Creating a user](#Creating a user)
+	- [Creating a contact](#Creating a contact)
+	- [Creating a group](#Creating a group)
+	- [Assigning a user to a group](#Assigning a user to a group)
+	- [Getting a groups users](#Getting a groups users)
+	- [Assigning a contact to a group](#Assigning a contact to a group)
+	- [Requesting a list of documents](#Requesting a list of documents)
+	- [Assigning a document to a user](#Assigning a document to a user)
+	- [Getting a users documents](#Getting a users documents)
+	- [Creating a broadcast](#Creating a broadcast)
+	- [Sending a broadcast](#Sending a broadcast)
+	- [Checking recipients and broadcast status](#Checking recipients and broadcast status)
+	- [Sending a verification email](#Sending a verification email)
+- [Rate Limiting](#Rate Limiting)
+- [Pagination](#Pagination)
+- [CORS](#CORS)
+- [Dates](#Dates)
+- [Support](#Support)
+
 
 ## Introduction
 
@@ -1102,6 +1137,25 @@ retry-after: 60
 x-ratelimit-reset: 1509018824
 ```
 
+## Pagination
+
+Data returned is paginated when there is more than 1 record returned. So for example if all users are requested the return JSON is split into manageable chunks. After the data at the end of the response there will be some metadata which gives information about the results. This is particularly useful as it can be used to access the next or previous pages of information.  
+
+```
+"from": 16,
+"last_page": 3,
+"next_page_url": "https://sentinel.comms.zone/api/v2/users?page=3",
+"path": "https://sentinel.comms.zone/api/v2/users",
+"per_page": 15,
+"prev_page_url": "https://sentinel.comms.zone/api/v2/users?page=1",
+"to": 30,
+"total": 37
+```
+
+
+## CORS
+
+The Sentinel API supports CORS or Cross Origin Resource Sharing. Without CORS it would not be possible to retrieve information for example in an app or a website on a different domain from the Sentinel API. The Sentinel API supports CORS requests from any domain.
 
 ## Dates
 
