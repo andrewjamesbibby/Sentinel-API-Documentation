@@ -120,7 +120,7 @@ When making requests to the API it is important to include some specific values 
 
 ``` 
 Accept: application/json 
-Authorization: Bearer 943hf4983tLKHJSLWPW
+Authorization: Bearer YOUR-API-TOKEN-HERE
 Content-Type: application/x-www-form-urlencoded
 ```
 
@@ -285,7 +285,7 @@ date: Wed, 25 Oct 2017 22:28:38 GMT
 
 {
     "response": 1,
-    "token": "oxJflpOXP2KGKkQ9t79GLS1T3AP3OFn7R3kXuWpiE9SaPRKc5zjUIZOmTi0B",
+    "token": "YOUR-API-TOKEN-HERE",
     "editions": [
         207790172,
         581340043
@@ -301,7 +301,7 @@ In order to retrieve a paginated App directory make the following request using 
 ```
 GET /api/v2/app/directory
 accept: application/json
-authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+authorization: Bearer YOUR-API-TOKEN-HERE
 host: sentinel.comms.zone
 ```
 
@@ -546,7 +546,7 @@ Create a user by making the following request. These fields are the minimum requ
 ```
 POST /api/v2/users
 accept: application/json
-authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+authorization: Bearer YOUR-API-TOKEN-HERE
 content-type: application/x-www-form-urlencoded
 host: sentinel.comms.zone
 
@@ -606,7 +606,7 @@ Creating a contact is similar to creating a user.
 POST /api/v2/contacts HTTP/1.1
 Host: sentinel.comms.zone
 Accept: application/json
-Authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+Authorization: Bearer YOUR-API-TOKEN-HERE
 Content-Type: application/x-www-form-urlencoded
 
 name=Albert&surname=Roux&mobile_code=44&mobile=38957438573&email=a.roux%40yudu.com
@@ -651,7 +651,7 @@ To create a group a unique name must be specified. Also it must be specified if 
 ```
 POST /api/v2/groups
 accept: application/json
-authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+authorization: Bearer YOUR-API-TOKEN-HERE
 content-type: application/x-www-form-urlencoded
 host: sentinel.comms.zone
 
@@ -696,7 +696,7 @@ The following request can be made to assign User with ID 19 to group with ID  6.
 ```
 POST /api/v2/groups/6/users/19
 accept: application/json
-authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+authorization: Bearer YOUR-API-TOKEN-HERE
 content-type: application/x-www-form-urlencoded
 host: sentinel.comms.zone
 ```
@@ -717,7 +717,7 @@ To look up a specific group and see what users are assigned to it, make the foll
 GET /api/v2/groups/6/users HTTP/1.1
 Host: sentinel.comms.zone
 Accept: application/json
-Authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+Authorization: Bearer YOUR-API-TOKEN-HERE
 ```
 
 A response like this will be returned. It can be seen that the user that was assigned is indeed now a member of the group.
@@ -765,7 +765,7 @@ date: Thu, 26 Oct 2017 09:03:52 GMT
         "from": 1,
         "last_page": 1,
         "next_page_url": null,
-        "path": "https://staging.comms.zone/api/v2/groups/6/users",
+        "path": "https://sentinel.comms.zone/api/v2/groups/6/users",
         "per_page": 15,
         "prev_page_url": null,
         "to": 1,
@@ -788,7 +788,7 @@ https://sentinel.comms.zone/groups/{id}/contacts/{contact}
 POST /api/v2/groups/6/contacts/14 HTTP/1.1
 Host: sentinel.comms.zone
 Accept: application/json
-Authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+Authorization: Bearer YOUR-API-TOKEN-HERE
 Content-Type: application/x-www-form-urlencoded
 ```
 
@@ -808,7 +808,7 @@ Documents are automatically syncronized between YUDU publisher and Sentinel. So 
 GET /api/v2/documents HTTP/1.1
 Host: sentinel.comms.zone
 Accept: application/json
-Authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+Authorization: Bearer YOUR-API-TOKEN-HERE
 Content-Type: application/x-www-form-urlencoded
 ```
 
@@ -866,7 +866,7 @@ Make a request like the following to assign a document to a user. This will assi
 ```
 POST /api/v2/users/19/documents/1
 accept: application/json
-authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+authorization: Bearer YOUR-API-TOKEN-HERE
 host: sentinel.comms.zone
 ```
 
@@ -884,9 +884,9 @@ To check which documents are already assigned to a user make the following reque
 
 ```
 GET /api/v2/users/19/documents HTTP/1.1
-Host: staging.comms.zone
+Host: sentinel.comms.zone
 Accept: application/json
-Authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+Authorization: Bearer YOUR-API-TOKEN-HERE
 Content-Type: application/x-www-form-urlencoded
 Cache-Control: no-cache
 Postman-Token: 605c9eb3-ecb8-a8f6-e00f-478e4660ee25
@@ -914,7 +914,7 @@ In this example broadcast, a fire alert will be broadacst by all 3 broadcast met
 POST /api/v2/broadcasts HTTP/1.1
 Host: sentinel.comms.zone
 Accept: application/json
-Authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+Authorization: Bearer YOUR-API-TOKEN-HERE
 Content-Type: application/x-www-form-urlencoded
 
 title=Fire+Alert&message=A+fire+has+broken+out+in+the+kitchens+of+Building+A.+Please+exit+all+company+buildings+and+meet+at+your+designated+fire+assembly+point.+&sms=1&sms_message=A+fire+has+broken+out%2C+please+exit+all+buildings+safely.&inapp=1&email=1&groups%5B%5D=6&response_required=1&question=Are+you+at+the+fire+assembly+point%3F
@@ -960,7 +960,7 @@ When the time comes to send a particular broadcast this can be done by simply us
 POST /api/v2/broadcasts/28/send HTTP/1.1
 Host: sentinel.comms.zone
 Accept: application/json
-Authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+Authorization: Bearer YOUR-API-TOKEN-HERE
 ```
 
 If the broadcast has not been sent already then a 204 response will be given. The broadcasts will be queued to be sent out via the specified methods. 
@@ -979,7 +979,7 @@ If the request is made again for the same broadcast the following response will 
 POST /api/v2/broadcasts/28/send HTTP/1.1
 Host: sentinel.comms.zone
 Accept: application/json
-Authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+Authorization: Bearer YOUR-API-TOKEN-HERE
 
 {
     "error": {
@@ -999,7 +999,7 @@ To check the recipients for the the above broadcast ID 28. The following request
 GET /api/v2/broadcasts/28/recipients HTTP/1.1
 Host: sentinel.comms.zone
 Accept: application/json
-Authorization: Bearer vpDt63w22qc2WjIibQddw1HikTyauvq63W5AovjuiOznSCQYg08EXfCBY2A7
+Authorization: Bearer YOUR-API-TOKEN-HERE
 ```
 
 This will return a list of all recipient data for the broadcast.
@@ -1049,7 +1049,7 @@ date: Thu, 26 Oct 2017 11:11:35 GMT
         "from": 1,
         "last_page": 1,
         "next_page_url": null,
-        "path": "https://staging.comms.zone/api/v2/broadcasts/28/recipients",
+        "path": "https://sentinel.comms.zone/api/v2/broadcasts/28/recipients",
         "per_page": 15,
         "prev_page_url": null,
         "to": 2,
@@ -1069,7 +1069,7 @@ To send a verification email create the following request.
 POST /api/v2/verification/19 HTTP/1.1
 Host: sentinel.comms.zone
 Accept: application/json
-Authorization: Bearer oxJflpOXP2KGKkQ9t79GLS1T3AP3OFn7R3kXuWpiE9SaPRKc5zjUIZOmTi0B
+Authorization: Bearer YOUR-API-TOKEN-HERE
 ```
 
 If successful a 204 response will be returned. The user will receive an email in their inbox shortly after.
