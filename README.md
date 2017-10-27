@@ -1,46 +1,49 @@
 # Sentinel API Documentation
-YUDU Sentinel API Documentation - Version 2.0
 
 
+<p align="center">
+  <img src="https://cloud.githubusercontent.com/assets/13904941/24360374/14e47384-12ff-11e7-8b3a-6134c5c50647.jpg?raw=true" alt="Sublime's custom image"/>
+</p><br>
+
+YUDU Sentinel API Documentation - Version 2.0. 
 
 
 ## Contents
 
 - [Introduction](#introduction)
-- [Terminology](#Terminology)
-- [List of endpoints](#List of Endpoints)
-	- [Unprotected](#Unprotected)
-	- [App](#App)
-	- [Full Access](#Full Access) 	
-- [Request Headers](#Request Headers)
-- [Permissable Fields](#Permissable Fields)
-	- [Users](#Users)
-	- [Contacts](#Contacts)
-	- [Groups](#Groups) 	
-	- [Broadcasts](#Broadcasts) 	
-- [HTTP Responses and Errors](#HTTP Responses and Errors)
-- [Examples](#Examples)
-	- [Obtaining an api token](#Obtaining an api token)
-	- [Requesting the App directory](#Requesting the App directory)
-	- [Creating a user](#Creating a user)
-	- [Creating a contact](#Creating a contact)
-	- [Creating a group](#Creating a group)
-	- [Assigning a user to a group](#Assigning a user to a group)
-	- [Getting a groups users](#Getting a groups users)
-	- [Assigning a contact to a group](#Assigning a contact to a group)
-	- [Requesting a list of documents](#Requesting a list of documents)
-	- [Assigning a document to a user](#Assigning a document to a user)
-	- [Getting a users documents](#Getting a users documents)
-	- [Creating a broadcast](#Creating a broadcast)
-	- [Sending a broadcast](#Sending a broadcast)
-	- [Checking recipients and broadcast status](#Checking recipients and broadcast status)
-	- [Sending a verification email](#Sending a verification email)
-- [Rate Limiting](#Rate Limiting)
-- [Pagination](#Pagination)
-- [CORS](#CORS)
-- [Dates](#Dates)
-- [Support](#Support)
-
+- [Terminology](#terminology)
+- [List of Endpoints](#list-of-endpoints)
+    - [Unprotected](#unprotected)
+    - [App](#app)
+    - [Full Access](#full-access)
+- [Request Headers](#request-headers)
+-[Permissible fields](#permissible-fields)
+    - [Users](#users)
+    - [Contacts](#contacts)
+    - [Groups](#groups)
+    - [Broadcasts](#broadcasts)
+- [HTTP Responses and errors](#http-responses-and-errors)
+- [Examples](#examples)
+    - [Obtaining an api token](#obtaining-an-api-token)
+    - [Requesting the App directory](#requesting-the-app-directory)
+    - [Creating a user](#creating-a-user)
+    - [Creating a contact](#creating-a-contact)
+    - [Creating a group](#creating-a-group)
+    - [Assigning a user to a group](#assigning-a-user-to-a-group)
+    - [Getting a groups users](#getting-a-groups-users)
+    - [Assigning a contact to a group](#assigning-a-contact-to-a-group)
+    - [Requesting a list of documents](#requesting-a-list-of-documents)
+    - [Assigning a document to a user](#assigning-a-document-to-a-user)
+    - [Getting a users' documents](#getting-a-users--documents)
+    - [Creating a broadcast](#creating-a-broadcast)
+    - [Sending a broadcast](#sending-a-broadcast)
+    - [Checking recipients and broadcast status](#checking-recipients-and-broadcast-status)
+    - [Sending a verification email](#sending-a-verification-email)
+- [Rate Limiting](#rate-limiting)
+- [Pagination](#pagination)
+- [CORS](#cors)
+- [Dates](#dates)
+- [Support](#support)
 
 ## Introduction
 
