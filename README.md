@@ -1,11 +1,9 @@
-# Sentinel API Documentation
+<h1 align='center'> YUDU Sentinel API Documentation - Version 2.0</h1>
 
-
+</br>
 <p align="center">
-  <img src="https://cloud.githubusercontent.com/assets/13904941/24360374/14e47384-12ff-11e7-8b3a-6134c5c50647.jpg?raw=true" alt="Sublime's custom image"/>
-</p><br>
-
-YUDU Sentinel API Documentation - Version 2.0. 
+  <img src="https://cloud.githubusercontent.com/assets/13904941/24360374/14e47384-12ff-11e7-8b3a-6134c5c50647.jpg?raw=true" alt="Sentinel"  />
+</p></br>
 
 
 ## Contents
