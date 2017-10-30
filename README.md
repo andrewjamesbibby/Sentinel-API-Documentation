@@ -58,7 +58,7 @@ The following terminology is used in this documentation:
 
 - User - A Sentinel user who has access to the Sentinel App. Some users can be given permissions to access the Sentinel backend and also be given api access. They appear in the app directory.
 - Contact - A contact listed in the Sentinel backend. They do not have access to the Sentinel app and cannot access the Sentinel backend. They appear in the app directory
-- Group - A named collections of assigned users, contacts and documents. 
+- Group - A named collection of assigned users, contacts and documents. 
 - Broadcast - A Sentinel broadcast which can be sent by inapp, sms or email methods.
 - Document - A YUDU publisher edition. The document can be assigned to individual users, or groups. The documents once assigned will appear in the Sentinel App for a logged in user. 
 - Recipient - A recipient is a user or contact which has been added to a broadcast to recieve a broadcast message once sent.
@@ -1121,11 +1121,11 @@ date: Thu, 26 Oct 2017 11:27:54 GMT
 
 ## Rate Limiting
 
-Requests to the Sentinel API are limited currently to 60 requests per minute. When making requests to the API all responses will include rate limit headers. These headers can indicate how many requests are remaining for a given minute. They will look like below.
+Requests to the Sentinel API are limited currently to 100 requests per minute. When making requests to the API all responses will include rate limit headers. These headers can indicate how many requests are remaining for a given minute. They will look like below.
 
 ```
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 59
+x-ratelimit-limit: 100
+x-ratelimit-remaining: 99
 ``` 
 
 If too many requests are made within a minute a 429 Too many requests error will be returned. The retry-after header will indicate how many seconds must be waited until a request will be accepted again. The x-ratelimit-reset header provides a Unix UTC timestamp, which is the exact time that a new rate limit kicks in.
@@ -1134,11 +1134,12 @@ If too many requests are made within a minute a 429 Too many requests error will
 HTTP/1.1 429
 status: 429
 date: Thu, 26 Oct 2017 11:52:44 GMT
-x-ratelimit-limit: 60
+x-ratelimit-limit: 100
 x-ratelimit-remaining: 0
 retry-after: 60
 x-ratelimit-reset: 1509018824
 ```
+
 
 ## Pagination
 
