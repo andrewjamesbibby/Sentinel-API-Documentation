@@ -329,6 +329,20 @@ date: Wed, 25 Oct 2017 22:28:38 GMT
 }
 ```
 
+Every time a request is made to /authentication a new API token is generated. Each token will expire after 30 minutes. If an expired token is used the following response will be returned.
+
+```
+HTTP/1.1 401
+status: 401
+content-type: application/json
+
+{
+    "error": "API token has expired."
+}
+
+```
+
+
 ### Requesting the App directory
 
 In order to retrieve a paginated App directory make the following request using the api token in the Authorization header.
@@ -1171,3 +1185,4 @@ If you require any assistance with this documentation please contact support at 
 
 
 
+I
