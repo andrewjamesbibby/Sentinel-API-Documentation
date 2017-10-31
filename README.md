@@ -1182,7 +1182,3 @@ All dates returned in any responses are given in ISO 8601 format.
 
 If you require any assistance with this documentation please contact support at [support@yudu.com](fgdf)
 
-
-
-
-I
