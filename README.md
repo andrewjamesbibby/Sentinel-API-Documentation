@@ -1168,6 +1168,8 @@ Data returned is paginated when there is more than 1 record returned. So for exa
 "total": 37
 ```
 
+By default per_page value is 100. Which means for every request that is paginated 100 records will be returned. This value can be changed to whatever is required. Simply pass a per_page parameter along with the request specifying how many records should be returned per page. The minimum is 1 and the maximum is 1000. Any values outside of this range will return the default 100 records. 
+
 
 ## CORS
 
