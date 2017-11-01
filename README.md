@@ -37,11 +37,14 @@
     - [Sending a broadcast](#sending-a-broadcast)
     - [Checking recipients and broadcast status](#checking-recipients-and-broadcast-status)
     - [Sending a verification email](#sending-a-verification-email)
+    - [Checking system activity](#checking-system-activity)
 - [Rate Limiting](#rate-limiting)
 - [Pagination](#pagination)
 - [CORS](#cors)
 - [Dates](#dates)
+- [Tools](#tools)
 - [Support](#support)
+
 
 ## Introduction
 
@@ -1130,6 +1133,88 @@ status: 204
 date: Thu, 26 Oct 2017 11:27:54 GMT
 ```
 
+### Checking system activity
+
+When actions take place in Sentinel events are logged. You may want to retrieve a list of events that have taken place in order to see what has happened between a sepcific period of time. Or you may wish to see the most recent activity. 
+
+To retrieve a paginated list of the most recent activity make the following request.
+
+```
+GET /api/v2/activity
+Host: sentinel.comms.zone
+accept: application/json
+Authorization: Bearer YOUR-API-TOKEN-HERE
+```
+
+This will return the last 30 days of activity by default. Something like the following response.
+
+```
+HTTP/1.1 200
+status: 200
+content-type: application/json
+date: Wed, 01 Nov 2017 18:43:36 GMT
+
+{
+    "data": {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 585,
+                "created_by": "Peter Smith",
+                "name": "updated_recipient",
+                "message": "Admin user Andrew Bibby responded to broadcast #28 for Albert Roux",
+                "created_at": "2017-11-01T15:01:56+00:00"
+            },
+            {
+                "id": 581,
+                "created_by": "Peter Smith",
+                "name": "logged_in",
+                "message": "Logged in",
+                "created_at": "2017-11-01T15:00:24+00:00"
+            },
+            {
+                "id": 580,
+                "created_by": "Charlie Stephenson",
+                "name": "logged_in",
+                "message": "Logged in",
+                "created_at": "2017-11-01T14:30:47+00:00"
+            },
+            {
+                "id": 579,
+                "created_by": "Shaun Black",
+                "name": "deleted_contact",
+                "message": "deleted contact Charlie Peters",
+                "created_at": "2017-11-01T12:09:13+00:00"
+            },
+            {
+                "id": 571,
+                "created_by": "Shaun Black",
+                "name": "deleted_contact",
+                "message": "deleted contact Andy Brown",
+                "created_at": "2017-11-01T11:53:06+00:00"
+            }
+        ],
+        "from": 1,
+        "last_page": 1,
+        "next_page_url": null,
+        "path": "https://sentinel.comms.zone/api/v2/activity",
+        "per_page": 100,
+        "prev_page_url": null,
+        "to": 5,
+        "total": 5
+    }
+}
+```
+
+It is possible to retrieve activity between 2 dates by specifying start and end date query parameters. So for example to return all activity between 1st October 2017 and 31st October 2017 then make the following request.
+
+```
+GET /api/v2/activity?start=2017-10-01 00:00:00&end=2017-10-03 23:59:59 HTTP/1.1
+Host: sentinel.comms.zone
+Accept: application/json
+Authorization: Bearer YOUR-API-TOKEN-HERE
+```
+ 
 
 ## Rate Limiting
 
@@ -1177,7 +1262,11 @@ The Sentinel API supports CORS or Cross Origin Resource Sharing. Without CORS it
 
 ## Dates
 
-All dates returned in any responses are given in ISO 8601 format.
+All dates returned in any responses are in Coordinated Universal Time (UTC) and shown in ISO 8601 format.
+
+## Tools
+
+When using the API you may find it useful to test using Postman. Postman is some useful software which will assist you in making the requests detailed in this documentation. It can be downloaded from [https://www.getpostman.com/](https://www.getpostman.com/). All raw requests and responses can be seen through the Postman console and will speed up your development time and can be useful if support is required. 
 
 
 ## Support
