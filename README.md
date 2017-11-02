@@ -144,7 +144,7 @@ The following tables list all of the possible Sentinel API end points and relate
 | GET    | /statistics                       | Returns some basic system information                         |
 | GET    | /usage                            | Returns the usage information                                 |
 | GET    | /activity                         | Returns the logging activity                                  |
-| GET    | /verification/{id}                | Sends a verification email to a specific user                 |
+| POST   | /verification/{id}                | Sends a verification email to a specific user                 |
 
 
 ## Request Headers
