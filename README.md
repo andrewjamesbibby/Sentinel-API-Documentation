@@ -36,7 +36,6 @@
     - [Creating a broadcast](#creating-a-broadcast)
     - [Sending a broadcast](#sending-a-broadcast)
     - [Checking recipients and broadcast status](#checking-recipients-and-broadcast-status)
-    - [Sending a verification email](#sending-a-verification-email)
     - [Checking system activity](#checking-system-activity)
 - [Rate Limiting](#rate-limiting)
 - [Pagination](#pagination)
@@ -144,7 +143,7 @@ The following tables list all of the possible Sentinel API end points and relate
 | GET    | /statistics                       | Returns some basic system information                         |
 | GET    | /usage                            | Returns the usage information                                 |
 | GET    | /activity                         | Returns the logging activity                                  |
-| POST   | /verification/{id}                | Sends a verification email to a specific user                 |
+
 
 
 ## Request Headers
@@ -1109,28 +1108,6 @@ date: Thu, 26 Oct 2017 11:11:35 GMT
         "total": 2
     }
 }
-```
-
-
-### Sending a verification email
-
-It is possible to send a verification email out to a user. Once recieved the user will be able to  follow a link which will allow them to update their user profile by themselves. This is a good way to periodically ensure all user data is up to date. Also it allows the user to remove any data they do not wish to be held about them. Once sent, the email verification link will be available for 24hours.
-
-To send a verification email create the following request.
-
-```
-POST /api/v2/verification/19 HTTP/1.1
-Host: sentinel.comms.zone
-Accept: application/json
-Authorization: Bearer YOUR-API-TOKEN-HERE
-```
-
-If successful a 204 response will be returned. The user will receive an email in their inbox shortly after.
-
-```
-HTTP/1.1 204
-status: 204
-date: Thu, 26 Oct 2017 11:27:54 GMT
 ```
 
 ### Checking system activity
