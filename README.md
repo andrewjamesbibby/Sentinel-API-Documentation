@@ -15,7 +15,7 @@
     - [App](#app)
     - [Full Access](#full-access)
 - [Request Headers](#request-headers)
--[Permissible fields](#permissible-fields)
+- [Permissible fields](#permissible-fields)
     - [Users](#users)
     - [Contacts](#contacts)
     - [Groups](#groups)
@@ -175,20 +175,21 @@ The following, details which fields can be passed as parameters when creating or
 | name                           | max:50                                                                |
 | surname                        | max:50                                                                |
 | password                       | min:8 / max:100                                                       |
-| email                          | Must be valid email and not already be used by another user / max:250 |
+| primary_email                  | Must be valid email and not already be used by another user / max:250 |
+| secondary_email                | Must be valid email                                                   |
 | position                       | max:100                                                               |
 | department                     | max:100                                                               |
 | company                        | max:100                                                               |
 | country                        | Must be a valid country code                                          |
 | location                       | max:100                                                               |
-| work_mobile_code               | Numeric / Must be a valid dial code                                   |
-| work_mobile                    | Numeric / Max:20                                                      |
-| work_landline_code             | Numeric / Must be a valid dial code                                   |
-| work_landline                  | Numeric / Max:20                                                      |
-| personal_mobile_code           | Numeric / Must be a valid dial code                                   |
-| personal_mobile                | Numeric / Max:20                                                      |
-| personal_landline_code         | Numeric / Must be a valid dial code                                   |
-| personal_landline              | Numeric / Max:20                                                      |
+| primary_mobile_code            | Numeric / Must be a valid dial code                                   |
+| primary_mobile                 | Numeric / Max:20                                                      |
+| primary_landline_code          | Numeric / Must be a valid dial code                                   |
+| primary_landline               | Numeric / Max:20                                                      |
+| secondary_mobile_code          | Numeric / Must be a valid dial code                                   |
+| secondary_mobile               | Numeric / Max:20                                                      |
+| secondary_landline_code        | Numeric / Must be a valid dial code                                   |
+| secondary_landline             | Numeric / Max:20                                                      |
 | office                         | max:100                                                               |
 | reports_to                     | max:100                                                               |
 | emergency_contact_name         | max:100                                                               |
@@ -374,12 +375,12 @@ date: Wed, 25 Oct 2017 22:34:54 GMT
                 "type": "user",
                 "name": "Andrew",
                 "surname": "Stevens",
-                "email": "a.stevens@yudu.com",
+                "primary_email": "a.stevens@yudu.com",
                 "position": "Developer",
                 "department": "Operations",
                 "location": "Clitheroe",
-                "work_mobile": "+440559494",
-                "work_landline": "+44546650403",
+                "primary_mobile": "+440559494",
+                "primary_landline": "+44546650403",
                 "country": "GB",
                 "office": "CS 1",
                 "reports_to": "Charlie",
@@ -390,12 +391,12 @@ date: Wed, 25 Oct 2017 22:34:54 GMT
                 "type": "user",
                 "name": "Caden",
                 "surname": "Collier",
-                "email": "cmante@example.net",
+                "primary_email": "cmante@example.net",
                 "position": "Administrator",
                 "department": "Investigations",
                 "location": "Cool Village",
-                "work_mobile": "+44074698973876",
-                "work_landline": "+445466567946",
+                "primary_mobile": "+44074698973876",
+                "primary_landline": "+445466567946",
                 "country": "GB",
                 "office": "maiores",
                 "reports_to": "Mohamed Murray",
@@ -454,12 +455,12 @@ date: Wed, 25 Oct 2017 22:34:54 GMT
                 "type": "user",
                 "name": "Collin",
                 "surname": "Hayes",
-                "email": "abigayle.roob@example.com",
+                "primary_email": "abigayle.roob@example.com",
                 "position": "Developer",
                 "department": "Special Operations",
                 "location": "Upper Highburn",
-                "work_mobile": "+44074698973876",
-                "work_landline": "+445466567946",
+                "primary_mobile": "+44074698973876",
+                "primary_landline": "+445466567946",
                 "country": "",
                 "office": "ea",
                 "reports_to": "Holden Graham",
@@ -470,12 +471,12 @@ date: Wed, 25 Oct 2017 22:34:54 GMT
                 "type": "user",
                 "name": "Moriah",
                 "surname": "Howell",
-                "email": "ipaucek@example.net",
+                "primary_email": "ipaucek@example.net",
                 "position": "Manager",
                 "department": "Training",
                 "location": "Cool Village",
-                "work_mobile": "+44074698973876",
-                "work_landline": "+445466567946",
+                "primary_mobile": "+44074698973876",
+                "primary_landline": "+445466567946",
                 "country": "US",
                 "office": "nihil",
                 "reports_to": "Dr. Keely Senger DDS",
@@ -486,12 +487,12 @@ date: Wed, 25 Oct 2017 22:34:54 GMT
                 "type": "user",
                 "name": "Moriah",
                 "surname": "Smith",
-                "email": "h5hghgh@example.net",
+                "primary_email": "h5hghgh@example.net",
                 "position": "Manager",
                 "department": "Training",
                 "location": "Cool Village",
-                "work_mobile": "+440748368256",
-                "work_landline": "+4454667555777",
+                "primary_mobile": "+440748368256",
+                "primary_landline": "+4454667555777",
                 "country": "US",
                 "office": "Clitheroe",
                 "reports_to": "Dr. Keely Senger DDS",
@@ -526,12 +527,12 @@ date: Wed, 25 Oct 2017 22:34:54 GMT
                 "type": "user",
                 "name": "Sylvia",
                 "surname": "Keebler",
-                "email": "frami.jewell@example.net",
+                "primary_email": "frami.jewell@example.net",
                 "position": "Assistant",
                 "department": "Special Operations",
                 "location": "Snoozeville",
-                "work_mobile": "+44074698973876",
-                "work_landline": "+445466567946",
+                "primary_mobile": "+44074698973876",
+                "primary_landline": "+445466567946",
                 "country": "RU",
                 "office": "voluptate",
                 "reports_to": "Emie Wilderman",
@@ -554,12 +555,12 @@ date: Wed, 25 Oct 2017 22:34:54 GMT
                 "type": "user",
                 "name": "Una",
                 "surname": "Lehner",
-                "email": "amos.damore@example.org",
+                "primary_email": "amos.damore@example.org",
                 "position": "Sales",
                 "department": "Investigations",
                 "location": "Royton",
-                "work_mobile": "+44074698973876",
-                "work_landline": "+445466567946",
+                "primary_mobile": "+44074698973876",
+                "primary_landline": "+445466567946",
                 "country": "RU",
                 "office": "ut",
                 "reports_to": "Dr. Hermann Ledner IV",
@@ -602,7 +603,7 @@ authorization: Bearer YOUR-API-TOKEN-HERE
 content-type: application/x-www-form-urlencoded
 host: sentinel.comms.zone
 
-name=Peter&surname=Smith&email=peter.smith@yudu.com&password=HYhs^&£jLOPk
+name=Peter&surname=Smith&primary_email=peter.smith@yudu.com&password=HYhs^&£jLOPk
 ```
 
 Once created a successful response will look as follows.
@@ -621,7 +622,8 @@ date: Wed, 25 Oct 2017 22:51:17 GMT
             "id": 19,
             "name": "Peter",
             "surname": "Smith",
-            "email": "peter.smith@yudu.com",
+            "primary_email": "peter.smith@yudu.com",
+            "secondary_email": "",
             "avatar": "",
             "position": "",
             "department": "",
@@ -630,10 +632,10 @@ date: Wed, 25 Oct 2017 22:51:17 GMT
             "location": "",
             "office": "",
             "reports_to": "",
-            "work_mobile": null,
-            "work_landline": null,
-            "personal_mobile": null,
-            "personal_landline": null,
+            "primary_mobile": null,
+            "primary_landline": null,
+            "secondary_mobile": null,
+            "secondary_landline": null,
             "emergency_contact_name": "",
             "emergency_contact_number": null,
             "emergency_contact_relationship": "",
@@ -788,7 +790,8 @@ date: Thu, 26 Oct 2017 09:03:52 GMT
                 "id": 19,
                 "name": "Peter",
                 "surname": "Smith",
-                "email": "peter.smith@yudu.com",
+                "primary_email": "peter.smith@yudu.com",
+                "secondary_email": "peter.smith@yudu.com",
                 "avatar": "",
                 "position": "",
                 "department": "",
@@ -797,10 +800,10 @@ date: Thu, 26 Oct 2017 09:03:52 GMT
                 "location": "",
                 "office": "",
                 "reports_to": "",
-                "work_mobile": null,
-                "work_landline": null,
-                "personal_mobile": null,
-                "personal_landline": null,
+                "primary_mobile": null,
+                "primary_landline": null,
+                "secondary_mobile": null,
+                "secondary_landline": null,
                 "emergency_contact_name": "",
                 "emergency_contact_number": null,
                 "emergency_contact_relationship": "",
@@ -958,9 +961,9 @@ date: Thu, 26 Oct 2017 10:26:44 GMT
 
 Once groups, users and contacts have been setup it is possible to create broadcasts in preparation for sending. 
 
-It is important to specify at least one send method for the broadcast from the available inapp, sms and email methods. Also an array of group ID's must be specified. The recipients of any broadcast is made up from any groups users and contacts.
+It is important to specify at least one send method for the broadcast from the available inapp, primary_sms, secondary_sms, primary_email and secondary_email methods. Also an array of group ID's must be specified. The recipients of any broadcast is made up from any groups users and contacts.
 
-In this example broadcast, a fire alert will be broadacst by all 3 broadcast methods. The broadcast will require a response from all recipients. The broadcast will be sent to all members of a group with the ID of 6.
+In this example broadcast, a fire alert will be broadacst by all 5 broadcast methods. The broadcast will require a response from all recipients. The broadcast will be sent to all members of a group with the ID of 6.
 
 ```
 POST /api/v2/broadcasts HTTP/1.1
@@ -969,7 +972,7 @@ Accept: application/json
 Authorization: Bearer YOUR-API-TOKEN-HERE
 Content-Type: application/x-www-form-urlencoded
 
-title=Fire+Alert&message=A+fire+has+broken+out+in+the+kitchens+of+Building+A.+Please+exit+all+company+buildings+and+meet+at+your+designated+fire+assembly+point.+&sms=1&sms_message=A+fire+has+broken+out%2C+please+exit+all+buildings+safely.&inapp=1&email=1&groups%5B%5D=6&response_required=1&question=Are+you+at+the+fire+assembly+point%3F
+title=Fire+Alert&message=A+fire+has+broken+out+in+the+kitchens+of+Building+A.+Please+exit+all+company+buildings+and+meet+at+your+designated+fire+assembly+point.+&sms_message=A+fire+has+broken+out%2C+please+exit+all+buildings+safely.&primary_sms=1&secondary_sms=1&primary_email=1&secondary_email=1&inapp=1&groups%5B%5D=6&response_required=1&question=Are+you+at+the+fire+assembly+point%3F
 ```
 
 Once recieved the broadcast will be created and the following response will be given. Please note that the broadcast has only been created in the system. It has not been sent yet. 
@@ -987,8 +990,10 @@ date: Thu, 26 Oct 2017 10:55:41 GMT
         "data": {
             "id": 28,
             "title": "Fire Alert",
-            "sms": true,
-            "email": true,
+            "primary_sms": true,
+            "secondary_sms": true,
+            "primary_email": true,
+            "secondary_email": true,
             "inapp": true,
             "message": "A fire has broken out in the kitchens of Building A. Please exit all company buildings and meet at your designated fire assembly point.",
             "sms_message": "A fire has broken out, please exit all buildings safely.",
@@ -1073,10 +1078,14 @@ date: Thu, 26 Oct 2017 11:11:35 GMT
                 "type": "User",
                 "name": "Peter",
                 "surname": "Smith",
-                "email": "peter.smith@yudu.com",
-                "mobile": "",
-                "sms_status": "Not Sent",
-                "email_status": "Failed",
+                "primary_email": "peter.smith@yudu.com",
+                "secondary_email": "",
+                "primary_mobile": "448678378367",
+                "secondary_mobile": "",
+                "primary_sms_status": "Not Sent",
+                "secondary_sms_status": "Not Sent",
+                "primary_email_status": "Pending",
+                "secondary_email_status": "Not Sent",
                 "inapp_status": "Sent",
                 "response_status": 0,
                 "response": null,
@@ -1088,10 +1097,14 @@ date: Thu, 26 Oct 2017 11:11:35 GMT
                 "type": "Contact",
                 "name": "Albert",
                 "surname": "Roux",
-                "email": "a.roux@yudu.com",
-                "mobile": "4438957438573",
-                "sms_status": "Failed",
-                "email_status": "Failed",
+                "primary_email": "a.roux@yudu.com",
+                "secondary_email": "",
+                "primary_mobile": "44783783768565",
+                "secondary_mobile": "",
+                "primary_sms_status": "Not Sent",
+                "secondary_sms_status": "Not Sent",
+                "primary_email_status": "Pending",
+                "secondary_email_status": "Not Sent",
                 "inapp_status": "Sent",
                 "response_status": 0,
                 "response": null,
