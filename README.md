@@ -32,7 +32,7 @@
     - [Assigning a contact to a group](#assigning-a-contact-to-a-group)
     - [Requesting a list of documents](#requesting-a-list-of-documents)
     - [Assigning a document to a user](#assigning-a-document-to-a-user)
-    - [Getting a users' documents](#getting-a-users--documents)
+    - [Getting a users documents](#getting-a-users-documents)
     - [Creating a broadcast](#creating-a-broadcast)
     - [Sending a broadcast](#sending-a-broadcast)
     - [Checking recipients and broadcast status](#checking-recipients-and-broadcast-status)
@@ -933,7 +933,7 @@ status: 204
 date: Thu, 26 Oct 2017 10:24:44 GMT
 ```
 
-### Getting a users' documents 
+### Getting a users documents 
 
 To check which documents are already assigned to a user make the following request. 
 
