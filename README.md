@@ -70,7 +70,7 @@ The following tables list all of the possible Sentinel API end points and relate
 
 - Unprotected - These routes do not require an api token and are publicly accessible. 
 
-- App - These routes require an api token to be passed in the header of each request and are for retrieval of information only. 
+- App - These routes require an api token to be passed in the header of each request.
 
 - Full access - These routes require an api token to be passed and also require that the api user has full api access permissions. This can be set in the Sentinel backend.  
 
