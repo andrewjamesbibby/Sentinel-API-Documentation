@@ -96,6 +96,7 @@ The following tables list all of the possible Sentinel API end points and relate
 | GET    | /app/groups                  | Returns a list of all Sentinel Groups the authenticated user belongs to            |
 | GET    | /app/groups/directory        | Returns a directory from only the groups the authenticated user belongs to         |
 | GET    | /app/groups/{id}/directory   | Returns a directory for a specific group                                           |
+| POST   | /app/response/{token}        | Updates recipient response for a given recipient token                             |
 
 ### Full Access
 
