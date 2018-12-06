@@ -245,7 +245,7 @@ The following, details which fields can be passed as parameters when creating or
 | email             | boolean 1/0               |
 | message           | min:5 / max:1000          |
 | sms_message       | min:5 / max:160           |
-| groups            | Array of valid group ID's |
+| groups            | Array of valid group ID's. Use 'all\_users' or 'all\_contacts' to add all users/contacts to the broadcast. |
 | response_required | boolean 1/0               |
 | question          | max:160                   |
 
